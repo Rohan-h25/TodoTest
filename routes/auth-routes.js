@@ -7,6 +7,7 @@ const CLIENT_LOGIN_FAILED_PAGE_URL = process.env.CLIENT_LOGIN_FAILED_PAGE_URL;
 
 // when login is successful, retrieve user info
 router.get("/login/success", (req, res) => {
+  console.log("in login/success route");
   if (req.user) {
     res.status(200).json({
       success: true,

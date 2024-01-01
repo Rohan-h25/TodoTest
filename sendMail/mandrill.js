@@ -22,3 +22,5 @@ mandrillClient.messages.send({ message }, (result) => {
 }, (err) => {
   console.error(err);
 });
+
+// console.log("mandrill");

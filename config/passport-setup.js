@@ -28,13 +28,14 @@ passport.use(
     (accessToken, refreshToken, profile, done) => {
       //passport cb
       //check if user already exist in our database
+
       User.findOne({ googleId: profile.id }).then((currentUser) => {
         if (currentUser) {
           //already have a user
           // console.log("User is: ", currentUser);
           done(null, currentUser);
         } else {
-          console.log(profile);
+          console.log("profile: ", profile);
           new User({
             username: profile.displayName,
             googleId: profile.id,

@@ -11,7 +11,7 @@ require("dotenv").config();
 
 // run();
 
-// exports.module = run;
+// console.log("mailchimp");
 
 const mailchimpClient = require("@mailchimp/mailchimp_transactional")(
     process.env.MANDRILL_API_KEY
@@ -38,11 +38,6 @@ const run = async () => {
     console.log(response);
   };
 run();
-
-// exports.module = run;
-
-
-
 
 
 

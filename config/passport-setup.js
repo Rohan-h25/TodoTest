@@ -30,7 +30,6 @@ passport.use(
     (accessToken, refreshToken, profile, done) => {
       //passport cb
       //check if user already exist in our database
-
       User.findOne({ googleId: profile.id }).then((currentUser) => {
         if (currentUser) {
           //already have a user
@@ -41,6 +40,7 @@ passport.use(
           new User({
             username: profile.displayName,
             googleId: profile.id,
+            email: profile._json.email,
           })
             .save()
             .then((newUser) => {

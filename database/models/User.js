@@ -10,6 +10,7 @@ const todoSchema = new mongoose.Schema({
 const userSchema = new Schema({
   username: String,
   googleId: String,
+  email: String,
   todos: [todoSchema],
 });
 

@@ -5,10 +5,13 @@ const CLIENT_TODO_PAGE_URL = process.env.CLIENT_TODO_PAGE_URL;
 const CLIENT_LOGIN_PAGE_URL = process.env.CLIENT_LOGIN_PAGE_URL;
 const CLIENT_LOGIN_FAILED_PAGE_URL = process.env.CLIENT_LOGIN_FAILED_PAGE_URL;
 
+const scheduleMail = require("../sendMail/scheduleMail");
+
 // when login is successful, retrieve user info
 router.get("/login/success", (req, res) => {
   console.log("in login/success route");
   if (req.user) {
+    scheduleMail(req.user);
     res.status(200).json({
       success: true,
       message: "user has successfully authenticated",
@@ -36,7 +39,7 @@ router.get("/logout", (req, res) => {
 });
 
 // auth with google
-router.get("/google", passport.authenticate("google", { scope: ["profile"] }));
+router.get("/google", passport.authenticate("google", { scope: ["profile", "email"] }));
 
 // callback route for google to redirect to
 router.get(

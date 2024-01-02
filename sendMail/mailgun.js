@@ -1,16 +1,19 @@
-const API_KEY = "YOUR_API_KEY";
-const DOMAIN = "YOUR_DOMAIN_NAME";
+require("dotenv").config();
 
-import formData from "form-data";
-import Mailgun from "mailgun.js";
+const API_KEY = process.env.MAILGUN_API;
+const DOMAIN = process.env.MAILGUN_DOMAIN;
 
-const mailgun = new Mailgun(formData);
+// import formData from "form-data";
+// import Mailgun from "mailgun.js";
+const Mailgun = require('mailgun.js');
+
+const mailgun = new Mailgun();
 const client = mailgun.client({ username: "api", key: API_KEY });
 
 const messageData = {
-  from: "Excited User <me@samples.mailgun.org>",
-  to: "foo@example.com, bar@example.com",
-  subject: "Hello",
+  from: "Excited User <rahulnilakesh@gmail.com>",
+  to: "six.semester25@gmail.com",
+  subject: "Hello MailGun",
   text: "Testing some Mailgun awesomeness!",
 };
 

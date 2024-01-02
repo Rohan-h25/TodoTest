@@ -1,15 +1,16 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const authRoutes = require("./routes/auth-routes.js");
+const Authroute = require("./routes/auth-routes.js");
 const passportSetup = require("./config/passport-setup.js");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
 const port = process.env.PORT || 4000;
 const User = require("./database/models/User.js");
 
-const mailchimp = require("./sendMail/mailchimp.js");
-
+// const mailchimp = require("./sendMail/mailchimp.js");
+// const mailgun = require("./sendMail/mailgun.js");
+// const sendMail = require("./sendMail/nodemailer.js");
 
 const app = express();
 
@@ -39,9 +40,9 @@ mongoose.connect(process.env.URL);
 const db = mongoose.connection;
 
 // Event handlers for Mongoose connection
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-db.once('open', () => {
-  console.log('Connected to MongoDB Atlas');
+db.on("error", console.error.bind(console, "MongoDB connection error:"));
+db.once("open", () => {
+  console.log("Connected to MongoDB Atlas");
   // You can start interacting with the database here
 });
 
@@ -54,7 +55,7 @@ app.use(
 );
 
 //set up routes
-app.use("/auth", authRoutes);
+app.use("/auth", Authroute);
 
 const authCheck = (req, res, next) => {
   if (!req.user) {
@@ -78,34 +79,34 @@ app.get("/todos", authCheck, (req, res) => {
   });
 });
 
-app.post("/addtodo", authCheck, async (req,res) => {
+app.post("/addtodo", authCheck, async (req, res) => {
   console.log("addtodo");
   // console.log(req.body.todo);
   try {
     const update = {
-      $push : {
-        todos: req.body.todo
-      }
-    } 
-    await User.updateOne({ googleId: req.user.googleId }, update)
-  } catch(e) {
+      $push: {
+        todos: req.body.todo,
+      },
+    };
+    await User.updateOne({ googleId: req.user.googleId }, update);
+  } catch (e) {
     console.log("Error in updating todos: ", e);
   }
   // res.redirect(CLIENT_TODO_PAGE_URL);
   res.status(200).send("todo added");
 });
 
-app.post("/deletetodo", authCheck, async (req,res) => {
+app.post("/deletetodo", authCheck, async (req, res) => {
   console.log("deletetodo");
   // console.log(req.body.id);
   try {
     const update = {
-      $pull : {
-        todos: {id: req.body.id}
-      }
-    }
-    await User.updateOne({ googleId: req.user.googleId }, update)
-  } catch(e) {
+      $pull: {
+        todos: { id: req.body.id },
+      },
+    };
+    await User.updateOne({ googleId: req.user.googleId }, update);
+  } catch (e) {
     console.log("Error in deleting todo: ", e);
   }
   // res.redirect(CLIENT_TODO_PAGE_URL);

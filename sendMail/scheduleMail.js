@@ -1,5 +1,6 @@
 const sendMail = require("./nodemailer.js");
 const User = require("../database/models/User.js");
+const moment = require('moment-timezone');
 
 function scheduleMail(user) {
 
@@ -12,8 +13,10 @@ function scheduleMail(user) {
         const todos = currentUser.todos;
         if (todos.length !== 0) {
 
+          const timeZone = 'Asia/kolkata';
+
           const currentTimeStamp = Date.now();
-          const now = new Date(currentTimeStamp);
+          const now = moment(currentTimeStamp).tz(timeZone).format();
           console.log("now date: ", now);
           const currtime = now.getHours()*60 + now.getMinutes();
 

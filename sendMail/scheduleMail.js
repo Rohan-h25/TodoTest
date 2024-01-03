@@ -23,8 +23,7 @@ function scheduleMail(user) {
           const currtime = parseInt(hours)*60 + parseInt(minutes);
 
           todos.forEach((todo) => {            
-            if (todo.time <= currtime + 5) {
-                console.log("sendMail");
+            if (todo.time <= currtime + 6) {
                 sendMail(currentUser.email, todo.value);
             }
           });

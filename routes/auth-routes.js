@@ -16,7 +16,7 @@ router.get("/login/success", (req, res) => {
       success: true,
       message: "user has successfully authenticated",
       user: req.user,
-      cookies: req.cookies,
+      // cookies: req.cookies,
     });
   }
 });

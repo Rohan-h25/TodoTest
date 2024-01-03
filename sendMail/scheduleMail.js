@@ -13,6 +13,7 @@ function scheduleMail(user) {
         if (todos.length !== 0) {
 
           const now = new Date();
+          console.log("now date: ", now);
           const currtime = now.getHours()*60 + now.getMinutes();
 
           todos.forEach((todo) => { 

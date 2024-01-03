@@ -22,12 +22,7 @@ function scheduleMail(user) {
           const minutes = now.format('mm');
           const currtime = parseInt(hours)*60 + parseInt(minutes);
 
-          console.log(currtime + 5);
-
-          todos.forEach((todo) => { 
-            console.log("TodoValue: ", todo.value); 
-            console.log("TodoTime: ", todo.time);
-            console.log("TodoCurrTime + 5: ", (currtime + 5));           
+          todos.forEach((todo) => {            
             if (todo.time <= currtime + 5) {
                 console.log("sendMail");
                 sendMail(currentUser.email, todo.value);
@@ -38,7 +33,7 @@ function scheduleMail(user) {
         console.log("Fail to fetch user");
       }
     });
-  }, 5000);
+  }, 60000);
 }
 
 module.exports = scheduleMail;

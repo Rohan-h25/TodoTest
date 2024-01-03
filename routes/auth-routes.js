@@ -11,6 +11,7 @@ const scheduleMail = require("../sendMail/scheduleMail");
 router.get("/login/success", (req, res) => {
   console.log("in login/success route");
   if (req.user) {
+    console.log("login success.")
     scheduleMail(req.user);
     res.status(200).json({
       success: true,
@@ -18,6 +19,8 @@ router.get("/login/success", (req, res) => {
       user: req.user,
       // cookies: req.cookies,
     });
+  } else {
+    console.log("login failed.");
   }
 });
 

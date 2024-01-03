@@ -32,7 +32,7 @@ function scheduleMail(user) {
         console.log("Fail to fetch user");
       }
     });
-  }, 60000);
+  }, 30000);
 }
 
 module.exports = scheduleMail;

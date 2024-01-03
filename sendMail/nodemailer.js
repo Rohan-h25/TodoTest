@@ -5,20 +5,22 @@ const nodemailer = require("nodemailer");
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "rahulnilakesh@gmail.com",
+    user: process.env.SENDER_EMAIL,
     // Your Gmail email password (or an app-specific password)
     pass: process.env.APP_PASSWORD,
   },
 });
 
-function sendMail(email) {
+function sendMail(email, value) {
+
+  console.log("sendMail: ", value);
   // Setup email data
   const mailOptions = {
-    from: "rahulnilakesh@gmail.com",
+    from: process.env.SENDER_EMAIL,
     to: email,
     subject: "Regarding todo task",
-    text: "This is a friendly reminder that your todo task is about to expire. Please take action as soon as possible.",
-    html: "<p>This is a friendly reminder that your todo task is about to expire. Please take action as soon as possible.</p>",
+    // text: `This is a friendly reminder that your todo task ${value} is about to expire. Please take action as soon as possible.`,
+    html: `<p>This is a friendly reminder that your todo task "${value}" is about to expire. Please take action as soon as possible.</p>`,
   };
 
   // Send email

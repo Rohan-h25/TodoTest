@@ -15,9 +15,11 @@ function scheduleMail(user) {
           const now = new Date();
           const currtime = now.getHours()*60 + now.getMinutes();
 
-          todos.forEach((todo) => {            
+          todos.forEach((todo) => { 
+            // console.log(todo.value);           
             if (todo.time <= currtime + 5) {
-                sendMail(currentUser.email);
+                
+                sendMail(currentUser.email, todo.value);
             }
           });
         }
@@ -25,7 +27,7 @@ function scheduleMail(user) {
         console.log("Fail to fetch user");
       }
     });
-  }, 150000);
+  }, 60000);
 }
 
 module.exports = scheduleMail;

@@ -16,9 +16,13 @@ function scheduleMail(user) {
           const timeZone = 'Asia/kolkata';
 
           const currentTimeStamp = Date.now();
-          const now = moment(currentTimeStamp).tz(timeZone).format();
-          console.log("now date: ", now);
-          const currtime = now.getHours()*60 + now.getMinutes();
+          const now = moment(currentTimeStamp).tz(timeZone);
+
+          const hours = now.format('HH'); // 24-hour format
+          const minutes = now.format('mm');
+          const currtime = parseInt(hours)*60 + parseInt(minutes);
+
+          console.log(currtime + 5);
 
           todos.forEach((todo) => { 
             console.log("TodoValue: ", todo.value); 
@@ -34,7 +38,7 @@ function scheduleMail(user) {
         console.log("Fail to fetch user");
       }
     });
-  }, 60000);
+  }, 5000);
 }
 
 module.exports = scheduleMail;

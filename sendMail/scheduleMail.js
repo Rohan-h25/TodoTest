@@ -12,7 +12,8 @@ function scheduleMail(user) {
         const todos = currentUser.todos;
         if (todos.length !== 0) {
 
-          const now = new Date();
+          const currentTimeStamp = Date.now();
+          const now = new Date(currentTimeStamp);
           console.log("now date: ", now);
           const currtime = now.getHours()*60 + now.getMinutes();
 

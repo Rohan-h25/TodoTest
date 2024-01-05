@@ -5,12 +5,17 @@ const moment = require('moment-timezone');
 function scheduleMail(user) {
 
   const intervalId = setInterval(() => {
-    // Executing a function every 1 minutes(1*60*1000)
+
+    // Executing a function every 30 seconds.
     console.log("Executing a function.....");
+
     User.findOne({ googleId: user.googleId }).then((currentUser) => {
+
       if (currentUser) {
+
         //already have a user
         const todos = currentUser.todos;
+        
         if (todos.length !== 0) {
 
           const timeZone = 'Asia/kolkata';

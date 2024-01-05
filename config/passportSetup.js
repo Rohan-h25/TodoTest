@@ -36,7 +36,7 @@ passport.use(
           // console.log("User is: ", currentUser);
           done(null, currentUser);
         } else {
-          console.log("profile: ", profile);
+          // console.log("profile: ", profile);
           new User({
             username: profile.displayName,
             googleId: profile.id,

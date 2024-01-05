@@ -1,5 +1,5 @@
 const sendMail = require("./nodemailer.js");
-const User = require("../database/models/User.js");
+const User = require("../models/User.js");
 const moment = require('moment-timezone');
 
 function scheduleMail(user) {

@@ -1,4 +1,4 @@
-const User = require("../database/models/User");
+const User = require("../models/User");
 
 function handleGetAllTodos(req, res) {
   console.log("gettodo");
